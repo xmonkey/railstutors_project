@@ -1,4 +1,5 @@
 <h2>Post list</h2>
 <% @posts.each do |post| %>
-  <p> <%= link_to post.title, post.url %>  <%= post.comments.count.to_s + " comments" %> </p>
+  <p> <%= link_to post.title, post.url %>  
+  <%=  pluralize(post.comments.count, ' comment') %> </p>
 <% end %>
