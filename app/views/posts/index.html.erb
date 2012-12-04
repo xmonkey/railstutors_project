@@ -1,5 +1,7 @@
 <h2>Post list</h2>
 <% @posts.each do |post| %>
   <p> <%= link_to post.title, post.url %>  
-  <%=  pluralize(post.comments.count, ' comment') %> </p>
+  <%= link_to pluralize(post.comments.count, ' comment'), post %> </p>
 <% end %>
+
+<%= link_to "Submit a Link", new_post_path %>
