@@ -6,6 +6,6 @@
 <% end %>
 </ul>
 <%= form_for @post.comments.new, :url => post_comments_path(@post) do |f| %>
-  <%= f.text_area :content, :size => "60x12" %>
-  <%= f.submit "Create" %>
+  <%= f.text_area :content, :size => "60x2" %>
+  <%= f.submit "Add comment" %>
 <% end %>

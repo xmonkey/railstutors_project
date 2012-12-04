@@ -1,7 +1,11 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @post.comments.create params[:comment]
-    redirect_to @post
+    @comment = @post.comments.create(params[:comment])
+    if @comment.save
+      redirect_to @post
+    else
+      redirect_to @post, notice: 'Failed to add new comment.'
+    end
   end
 end
