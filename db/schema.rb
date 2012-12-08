@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128135451) do
+ActiveRecord::Schema.define(:version => 20121206142713) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -28,5 +28,14 @@ ActiveRecord::Schema.define(:version => 20121128135451) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "votes", :force => true do |t|
+    t.boolean  "upvote"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "votes", ["post_id", "upvote"], :name => "index_votes_on_post_id_and_upvote"
 
 end

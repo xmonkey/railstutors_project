@@ -1,7 +1,23 @@
 <h2>Post list</h2>
 <% @posts.each do |post| %>
   <p> <%= link_to post.title, post.url %>  
-  <%= link_to pluralize(post.comments.count, ' comment'), post %> </p>
+  <%= link_to pluralize(post.comments.count, ' comment'), post %>
+  <%= pluralize(post.votes_count, ' vote' )%>
+  <% link_to "upvote failed", post_votes_path(post), :data => {:vote => "vote[:upvote => :true]"},:method => :post %>
+  <% link_to "upvote failed2", post_votes_path(post), :vote => [:upvote =>true],:method => :post %>
+  <%= link_to "upvote",  post_votes_path(post, :vote => [:upvote =>true]), :method => :post %>
+  <%= link_to "downvote",  post_votes_path(post, :vote => [:upvote =>false]), :method => :post %>
+
+  <%= form_for post.votes.new, :url => post_votes_path(post) do |f| %>
+ <%= f.hidden_field :upvote, { :value => true } %>
+  <%= f.submit "Upvote" %>
+<% end %>
+<%= form_for post.votes.new, :url => post_votes_path(post) do |f| %>
+ <%= f.hidden_field :upvote, { :value => false } %>
+  <%= f.submit "Downvote" %>
+<% end %>
+  </p>
+
 <% end %>
 
 <%= link_to "Submit a Link", new_post_path %>
