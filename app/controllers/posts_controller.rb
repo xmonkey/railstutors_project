@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path
     else
-      redirect_to @post, notice: 'Failed to add new post.'
+      render action: "new"
     end
   end
 end
