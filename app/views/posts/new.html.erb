@@ -1,14 +1,13 @@
 <h2>Add new Post</h2>
 <% if @post.errors.any? %>
   <div id ="error_explanation">
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg%></li>
-    <% end %>
-  </ul>
-</div>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg%></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
-<h3> Form based on form_for </h3>
 <%= form_for (@post) do |f| %>
   <div class="field">
     <%= f.label :title %><br />
@@ -22,16 +21,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-<h3> Form based on form_tag </h3>
-<%= form_tag(@post) do -%>
-  <div class="field">
-    <%= label_tag 'title' %><br />
-    <%= text_field_tag 'post[title]' %><br />
-  </div>
-  <div class="field">
-    <%= label_tag 'url' %><br />
-    <%= text_field_tag 'post[url]' %><br />
-  </div>
-  <div><%= submit_tag 'Create post' %></div>
-<% end -%>
