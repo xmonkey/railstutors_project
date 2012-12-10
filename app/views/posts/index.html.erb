@@ -1,6 +1,6 @@
 <h2>Post list</h2>
 <% @posts.each do |post| %>
-  <p> <%= link_to post.title, post.url %>  
+  <p> <%= link_to post.title, url_link(post) %>
   <%= link_to pluralize(post.comments.count, ' comment'), post %>
   <%= pluralize(post.votes_count, ' vote' )%>
   <% link_to "upvote failed", post_votes_path(post), :data => {:vote => "vote[:upvote => :true]"},:method => :post %>
