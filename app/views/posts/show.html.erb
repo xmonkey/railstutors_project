@@ -2,10 +2,14 @@
 <p><%=  pluralize(@post.comments.count, ' comment') %> </p>
 <ul>
 <% @post.comments.each do |comment| %>
-  <li> <%=  comment.content %> </li>
+  <li>
+  <%=  comment.content %> by <i><%= comment.user.name %></i>
+  </li>
 <% end %>
 </ul>
-<%= form_for @post.comments.new, :url => post_comments_path(@post) do |f| %>
-  <%= f.text_area :content, :size => "60x2" %>
-  <%= f.submit "Add comment" %>
+<% if logged_in? %>
+  <%= form_for @post.comments.new, :url => post_comments_path(@post) do |f| %>
+    <%= f.text_area :content, :size => "60x2" %>
+    <%= f.submit "Add comment" %>
+  <% end %>
 <% end %>
