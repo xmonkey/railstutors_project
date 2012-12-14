@@ -1,1 +1,8 @@
-Navigation
+Welcome!
+<% if logged_in? %>
+  <%= current_user.name%>
+  |
+  <%= link_to "Log out", log_out_path %>
+<% else %>
+  <%= link_to "Sign in", sign_in_path %>
+<% end %>
