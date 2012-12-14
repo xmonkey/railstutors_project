@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :require_user, only: [:new, :create]
   def index
     @posts = Post.all
   end
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(params[:post])
+    @post.user = current_user
     if @post.save
       redirect_to posts_path
     else

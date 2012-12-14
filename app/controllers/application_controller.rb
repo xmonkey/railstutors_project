@@ -9,5 +9,11 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def require_user
+    if !logged_in?
+      redirect_to root_path, notice: "You need to sign in first"
+    end
+  end
+
   helper_method :current_user, :logged_in?
 end

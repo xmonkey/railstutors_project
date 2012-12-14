@@ -2,6 +2,7 @@
 <% @posts.each do |post| %>
   <p>
   <%= link_to post.title, url_link(post) %>
+  by <%= post.user.name %>
   <%= link_to pluralize(post.comments.count, ' comment'), post %>
   <%= pluralize(post.votes_count, ' vote' )%>
   <%= link_to "upvote",  post_votes_path(post, :vote => [:upvote =>true]), :method => :post %>
@@ -10,5 +11,6 @@
   </p>
 
 <% end %>
-
-<%= link_to "Submit a Link", new_post_path %>
+<% if logged_in? %>
+  <%= link_to "Submit a Link", new_post_path %>
+<% end %>
