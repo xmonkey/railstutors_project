@@ -1,0 +1,41 @@
+<h2> User Profile </h2>
+
+<ul>
+  <li>
+  name: <%= @user.name %>
+  </li>
+  <li>
+  Joined on: <%= @user.created_at.to_date.to_s %>
+  </li>
+</ul>
+
+<h3>Recent Activities:</h3>
+Posts:
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+    <%= link_to post.title, url_link(post) %>
+    </li>
+  <% end %>
+</ul>
+Comments:
+<ul>
+  <% @comments.each do |comment| %>
+    <li>
+    <%= comment.content %>
+    </li>
+  <% end %>
+</ul>
+Votes:
+<ul>
+  <% @votes.each do |vote| %>
+    <li>
+  <% if vote.upvote %>
+    Upvoted:
+  <% else %>
+    Downvoted
+  <% end %>
+  :<%= link_to vote.post.title, url_link(vote.post) %>
+    </li>
+  <% end %>
+</ul>

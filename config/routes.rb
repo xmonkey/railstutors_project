@@ -1,6 +1,6 @@
 CourseProject::Application.routes.draw do
   get 'sign_up', to: "users#new", :as => :sign_up
-  resources :users, :only => :create
+  resources :users, :only => [:create, :show]
 
   get 'sign_in', to: "sessions#new", :as => :sign_in
   post 'sign_in', to: "sessions#create"
