@@ -1,5 +1,11 @@
 <h3><%= link_to @post.title, url_link(@post) %> </h3>
+<% unless @post.node_name.blank? %>
+  node: <%= link_to @post.node_name, @post.node %>
+<% end %>
+
+
 <p><%=  pluralize(@post.comments.count, ' comment') %> </p>
+
 <ul>
 <% @post.comments.each do |comment| %>
   <li>
